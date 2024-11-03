@@ -69,15 +69,16 @@ public class StringArrayUtils {
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static boolean isPalindromic(String[] array) {
-        String[] reverse = new String[array.length];
-        String[] palin = new String[array.length];
-        for (int i = 0; i < array.length; i++) {
-            reverse[i] = array[array.length - 1 - i];
-            if (Boolean.valueOf(palin == reverse)) {
-                return true;
+        int side1 = 0;
+        int side2 = array.length - 1;
+        while(side1 < side2) {
+            if (!array[side1].equals(array[side2])) {
+                return false;
             }
+            side1++;
+            side2--;
         }
-        return false;
+        return true;
     }
 
     /**
@@ -85,10 +86,7 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
-        String[] pan = {"a", "b","c","d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
-        for (int i = 0; i <= pan.length; i++){
-            return true;
-        }
+
         return false;
     }
 
@@ -99,8 +97,13 @@ public class StringArrayUtils {
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
         int count = 0;
+        for (String str : array) {
+            if (str.equals(value)) {
+                count++;
+            }
+        }
 
-        return 0;
+        return count;
     }
 
     /**
@@ -109,8 +112,20 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-
-        return null;
+        int count = 0;
+        for (String str : array) {
+            if (!str.equals(valueToRemove)) {
+                count++;
+            }
+        }
+        String[] result = new String[count];
+        int i = 0;
+        for (String string : array){
+            if (!string.equals(valueToRemove)){
+                result[i++] = string;
+            }
+        }
+        return result;
     }
 
     /**
